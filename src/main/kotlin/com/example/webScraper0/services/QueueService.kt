@@ -7,10 +7,8 @@ import dev.kourier.amqp.channel.AMQPChannel
 import dev.kourier.amqp.connection.AMQPConnection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.CoroutineScope
-import org.springframework.context.annotation.Bean
-import com.example.webScraper0.controllers.searchController.searchRequest
+import com.example.webScraper0.controllers.searchController.SearchRequest
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.springframework.stereotype.Service
@@ -63,7 +61,7 @@ class QueueService(
     }
 
     // Producer
-    suspend fun send(message: searchRequest) {
+    suspend fun send(message: SearchRequest) {
         waitUntilReady()
 
         val payload = objectMapper.writeValueAsBytes(message)
@@ -88,7 +86,7 @@ class QueueService(
                 val msg =
                     objectMapper.readValue(
                         delivery.message.body,
-                        searchRequest::class.java
+                        SearchRequest::class.java
                     )
 
                 println("📥 Received: $msg")

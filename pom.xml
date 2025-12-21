@@ -139,6 +139,29 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.jan-tennert.supabase</groupId>
+            <artifactId>bom</artifactId>
+            <version>3.2.6</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.jan-tennert.supabase</groupId>
+            <artifactId>postgrest-kt</artifactId>
+            <version>3.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.jan-tennert.supabase</groupId>
+            <artifactId>auth-kt</artifactId>
+            <version>3.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.jan-tennert.supabase</groupId>
+            <artifactId>realtime-kt</artifactId>
+            <version>3.2.6</version>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -149,6 +172,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>11.19.1</version>
+                <configuration>
+                    <user>postgres</user>
+                    <password>1234</password>
+                    <schemas>
+                        <schema>schema1</schema>
+                        <schema>schema2</schema>
+                        <schema>schema3</schema>
+                    </schemas>
+                    <placeholders>
+                        <keyABC>valueXYZ</keyABC>
+                        <otherplaceholder>value123</otherplaceholder>
+                    </placeholders>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>
